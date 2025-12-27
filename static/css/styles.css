@@ -1,0 +1,345 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e1eafc, #c4d7f7);
+    position: relative;
+    overflow-y: auto;
+}
+
+/* Background overlay with subtle animated shapes */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+.background-shape {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #007bff, #0096ff);
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0.15;
+    animation: moveShape 10s infinite alternate;
+}
+
+/* Static shapes */
+.background-overlay::before,
+.background-overlay::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    background: #007bff;
+}
+
+.background-overlay::before {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: 20%;
+}
+
+.background-overlay::after {
+    width: 200px;
+    height: 200px;
+    bottom: 15%;
+    right: 15%;
+}
+
+/* Animated shapes */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner-shape {
+    position: absolute;
+    border: 4px solid #007bff;
+    border-radius: 50%;
+    opacity: 0.05;
+    animation: rotate 10s linear infinite;
+}
+
+.spinner-shape.one {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    left: 70%;
+    animation-duration: 8s;
+}
+
+.spinner-shape.two {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 25%;
+    animation-duration: 12s;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: Arial, sans-serif;
+}
+
+input[type="file"],
+input[type="number"],
+textarea {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+input[type="file"]:hover,
+input[type="number"]:hover,
+textarea:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+button {
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: translateY(-2px) scale(1.05);
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+#result {
+    margin-top: 20px;
+}
+
+#downloadLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#downloadLink:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+#feedbackStatus {
+    color: green;
+    font-weight: bold;
+}
+
+/* Loader container styling */
+#loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Spinner animation */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .background-overlay::before,
+    .background-overlay::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    .spinner-shape.one {
+        width: 70px;
+        height: 70px;
+    }
+
+    .spinner-shape.two {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 20px 50px; /* Add more bottom padding */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+    overflow-y: auto;
+    max-height: 80vh; /* Set a max height to allow scrolling */
+}
+#result {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#downloadLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add spacing between link and button */
+    transition: color 0.3s;
+}
+
+#downloadLink {
+    margin:20px;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+#downloadLink:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.feedback-label {
+    font-weight: bold;
+    margin: 20px;
+    display: block;
+    color: #333;
+}
+
+#feedbackForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 20px;
+}
+
+#feedback {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+#feedback:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+#feedbackButton {
+    align-self: center; /* Center align the button */
+    padding: 12px;
+    width: 100%;
+    max-width: 200px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+#feedbackButton:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+#feedbackStatus {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #downloadButton, #feedbackButton {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .container {
+        padding: 20px 15px 40px; /* Adjust padding for mobile */
+    }
+}
